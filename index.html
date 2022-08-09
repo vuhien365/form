@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tổng hợp FORM - DOM - JQuery</title>
+    <style>
+        /* ---------- START ---------- */
+        body{
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background-image: linear-gradient(to right bottom, #ff003c, #fffb00, #00f241, #003cff, #ff00bf);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .tieude{
+            color: white;
+            text-align: center;
+            font-size: 100px;
+            text-shadow: 1px 1px 1px #333;
+        }
+        .box{
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            width: 1000px;
+        }
+        .box > div{
+            width: 450px;
+            padding: 10px;
+        }
+
+        @media only screen and (max-width: 800px){
+            .box{
+                margin: 0 auto;
+                display: flex;
+                flex-wrap: none;
+                width: 500px;
+            }
+        }
+
+        .box-right-box{
+            width: 400px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 1px 1px 1px #333;
+            margin: 10px;
+        }
+        .form-group{
+            width: 100%;
+            display: flex;
+        }
+        label{
+            width: 400px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 1px 1px 1px #333;
+            margin: 10px;
+        }
+        h3{
+            color: blue;
+        }
+        .chuy{
+            color: red;
+            font-weight: bold;
+        }
+        .copy{
+            text-align: center;
+            font-size: 10px;
+            color: white;
+            text-shadow: 1px 1px 1px #333;
+            margin: -20px 0 10px 0;
+        }
+        /* ---------- END ---------- */
+        /* ---------- START ---------- */
+        .codeHeader {
+        background-color: #f5f5f5;
+        border: 1px solid #e0e0e0;
+        border-bottom: 0;
+        text-align: right;
+        padding: 2px;
+        margin: 10px auto;
+        max-width: 450px;
+        }
+
+        .copy-text {
+        background: url(http://ibox.clan.su/icon/acoppy.png) no-repeat 4px center;
+        font-size: 20px;
+        cursor: pointer;
+        color: #fd7805;
+        padding: 5px 5px 5px 20px;
+        border-left: 1px solid #e8e3dc;
+        }
+
+        .copy-text:hover {color:#3c00ff;}
+        pre.code {
+        display: block;
+        background: #f9f9f9;
+        max-height: 400px;
+        font-size: 14px;
+        color: black;
+        text-align: left;
+        overflow: auto;
+        border: 1px solid #d3d6db;
+        margin: auto;
+        padding: 16px;
+        line-height: 21px;
+        white-space: nowrap;
+        }
+        .codeHeader a{
+        color: red;
+        text-decoration: blink;
+        text-decoration-line: blink;
+        text-decoration-thickness: initial;
+        text-decoration-style: initial;
+        text-decoration-color: initial;
+        }
+        .codeHeader a, input {
+        outline: none;
+        }
+
+        /* ---------- END ---------- */
+        /* start menu css*/
+        .menu ul {
+        background: #1F568B;
+        list-style-type: none;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        padding: 0;
+        }
+        .menu li {
+        color: #f1f1f1;
+        display: block;
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        }
+        .menu a {
+        text-decoration: none;
+        color: #fff;
+        display: block;
+        }
+        .menu a:hover {
+        background: #F1F1F1;
+        color: #333;
+        }
+        /* end menu css */
+        /* start checkbox css */
+        #info{
+            width: 300px;
+            height: 300px;
+            border: 1px solid;
+        }
+        #text{
+            width: 100%;
+            height: 100%;
+        }
+        input[type="checkbox"]{
+            transform: scale(1.5);
+        }
+        /* end checkbox css */
+
+        /* start css flex-container */
+        .flex-container{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .flex-container > div{
+            width: 200px;
+        }
+        
+        /* end css flex-container */
+    </style>
+    <!---------- START ---------->
+    <script src="http://ibox.clan.su/track-bs/js/khung-code-2.1.1jquery.min.js"></script>
+    <script src="http://ibox.clan.su/track-bs/js/khung-code-clipboard.js"></script>
+    <script>
+    $(function(){
+    new Clipboard('.copy-text');
+    });
+
+    </script>
+    <!---------- END ---------->
+    <!---------- START chống chuột phải---------->
+    <script type='text/javascript'>
+        //<![CDATA[
+        // JavaScript Document
+        // var message="NoRightClicking"; function defeatIE() {if (document.all) {(message);return false;}} function defeatNS(e) {if (document.layers||(document.getElementById&&!document.all)) { if (e.which==2||e.which==3) {(message);return false;}}} if (document.layers) {document.captureEvents(Event.MOUSEDOWN);document.onmousedown=defeatNS;} else{document.onmouseup=defeatNS;document.oncontextmenu=defeatIE;} document.oncontextmenu=new Function("return false")
+        //]]>
+        
+        </script>
+    <!---------- END chống chuột phải---------->
+    <!--START Code chống Ctrl + U, chống viewsourse, chống F12 -->
+    <!-- <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js'> -->
+    <!-- <script type='text/javascript'>
+    checkCtrl==false $(&#39;*&#39;).keydown(function(e){
+    if(e.keyCode==&#39;17&#39;){ checkCtrl=false  } }).keyup(function(ev){
+    if(ev.keyCode==&#39;17&#39;){ checkCtrl=false } }).keydown(function(event){
+    if(checkCtrl){
+    if(event.keyCode==&#39;85&#39;){ return false; } } })
+    </script> -->
+    <!--END Code chống Ctrl + U, chống viewsourse, chống F12 -->
+</head>
+<body> <!-- onkeydown="return false" -->
+    <div class="tieude">form</div>
+    <div class="copy">&copy; Copyright 2022 Vũ Duy Hiển</div>
+<div class="box">
+    <div> <!-- START BOX LEFT-->
+
+        <!-- START HÀNG NGANG 1-->
+
+        <div class="form-group"> 
+            <label>
+        <div class="flex-container">
+            <div>
+                <input type="checkbox" name="Username" class="check" id="Username" value="
+                &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;label for=&amp;quot;text&amp;quot;&amp;gt;Username&amp;lt;/label&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;input type=&amp;quot;text&amp;quot; id=&amp;quot;username&amp;quot; name=&amp;quot;username&amp;quot;/&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/div&amp;gt; &lt;br&gt;
+                "> Username <br>
+                
+                <input type="checkbox" name="Password" class="check" id="Password" value="
+                &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;label for=&amp;quot;password&amp;quot;&amp;gt;Password&amp;lt;/label&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;input type=&amp;quot;password&amp;quot; id=&amp;quot;password&amp;quot; class=&amp;quot;password&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/div&amp;gt; &lt;br&gt;
+                "> Password <br>
+                
+                <input type="checkbox" name="Email" class="check" id="Email" value="
+                &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;label for=&amp;quot;email&amp;quot;&amp;gt;Email&amp;lt;/label&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;input type=&amp;quot;email&amp;quot; id=&amp;quot;email&amp;quot; class=&amp;quot;email&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/div&amp;gt; &lt;br&gt;
+                "> Email <br>
+                
+                <input type="checkbox" name="Search" class="check" id="Search" value="
+                &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;label for=&amp;quot;search&amp;quot;&amp;gt;Search&amp;lt;/label&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;input type=&amp;quot;search&amp;quot; id=&amp;quot;search&amp;quot; class=&amp;quot;search&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/div&amp;gt; &lt;br&gt;
+                "> Search <br>
+            
+               
+                <input type="checkbox" name="Url" class="check" id="Url" value="
+                &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;label for=&amp;quot;url&amp;quot;&amp;gt;Url&amp;lt;/label&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;input type=&amp;quot;url&amp;quot; id=&amp;quot;url&amp;quot; class=&amp;quot;url&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/div&amp;gt; &lt;br&gt;
+                "> Url <br>
+                
+                <input type="checkbox" name="File" class="check" id="File" value="
+                &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;label for=&amp;quot;file&amp;quot;&amp;gt;File&amp;lt;/label&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;input type=&amp;quot;file&amp;quot; id=&amp;quot;file&amp;quot; class=&amp;quot;file&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/div&amp;gt;&lt;br&gt;
+                "> File  <br>
+                
+                <input type="checkbox" name="Color" class="check" id="Color" value="
+                &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;label for=&amp;quot;color&amp;quot;&amp;gt;Color&amp;lt;/label&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;input type=&amp;quot;color&amp;quot; id=&amp;quot;color&amp;quot; class=&amp;quot;color&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/div&amp;gt; &lt;br&gt;
+                "> Color <br>
+                
+                <input type="checkbox" name="Number" class="check" id="Number" value="
+                &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;label for=&amp;quot;number&amp;quot;&amp;gt;Number&amp;lt;/label&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;input type=&amp;quot;number&amp;quot; min=&amp;quot;0&amp;quot; max=&amp;quot;20&amp;quot; value=&amp;quot;4&amp;quot; step=&amp;quot;2&amp;quot; id=&amp;quot;number&amp;quot; class=&amp;quot;number&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/div&amp;gt; &lt;br&gt;
+                "> Number <br>
+            
+                
+                <input type="checkbox" name="Phone" class="check" id="Phone" value="
+                &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;label for=&amp;quot;phone&amp;quot;&amp;gt;Phone&amp;lt;/label&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;input type=&amp;quot;tel&amp;quot; id=&amp;quot;phone&amp;quot; name=&amp;quot;phone&amp;quot; placeholder=&amp;quot;0908 999 888 &amp;gt;&amp;gt; 10 numbers and no space&amp;quot; pattern=&amp;quot;(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})&amp;quot; required&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/div&amp;gt; &lt;br&gt;
+                "> Phone <br>
+                
+                <input type="checkbox" name="Range" class="check" id="Range" value="
+                &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;label for=&amp;quot;range&amp;quot;&amp;gt;Range&amp;lt;/label&amp;gt; &lt;br&gt;&amp;#10;0 &amp;lt;input type=&amp;quot;range&amp;quot; min=&amp;quot;0&amp;quot; max=&amp;quot;10&amp;quot; value=&amp;quot;3&amp;quot; id=&amp;quot;range&amp;quot; class=&amp;quot;range&amp;quot;&amp;gt; 10 &lt;br&gt;&amp;#10;&amp;lt;/div&amp;gt; &lt;br&gt;
+                "> Range <br>
+            
+                <input type="checkbox" name="Date" class="check" id="Date" value="
+                &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;label for=&amp;quot;date&amp;quot;&amp;gt;Date&amp;lt;/label&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;input type=&amp;quot;date&amp;quot; id=&amp;quot;date&amp;quot; class=&amp;quot;date&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/div&amp;gt; &lt;br&gt;
+                "> Date <br>
+            </div>
+            <div>
+                <input type="checkbox" name="Address" class="check" id="Address" value="
+                &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;label for=&amp;quot;text&amp;quot;&amp;gt;Address&amp;lt;/label&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;input type=&amp;quot;text&amp;quot; id=&amp;quot;address&amp;quot; name=&amp;quot;address&amp;quot;/&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/div&amp;gt; &lt;br&gt;
+                "> Address <br>
+
+                <input type="checkbox" name="Week" class="check" id="Week" value="
+                &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;label for=&amp;quot;week&amp;quot;&amp;gt;Week&amp;lt;/label&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;input type=&amp;quot;week&amp;quot; id=&amp;quot;week&amp;quot; class=&amp;quot;week&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/div&amp;gt; &lt;br&gt;
+                "> Week  <br>
+            
+                <input type="checkbox" name="Month" class="check" id="Month" value="
+                &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;label for=&amp;quot;month&amp;quot;&amp;gt;Month&amp;lt;/label&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;input type=&amp;quot;month&amp;quot; id=&amp;quot;month&amp;quot; class=&amp;quot;month&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/div&amp;gt; &lt;br&gt;
+                "> Month <br>
+                
+                <input type="checkbox" name="Gender" class="check" id="Gender" value="
+                &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;label for=&amp;quot;gender&amp;quot;&amp;gt;Gender&amp;lt;/label&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;input type=&amp;quot;radio&amp;quot; name=&amp;quot;gender&amp;quot; value=&amp;quot;Male&amp;quot; id=&amp;quot;gender&amp;quot; class=&amp;quot;gender&amp;quot; checked &amp;gt; Male &lt;br&gt;&amp;#10;&amp;lt;input type=&amp;quot;radio&amp;quot; name=&amp;quot;gender&amp;quot; value=&amp;quot;Female&amp;quot; id=&amp;quot;&amp;quot; class=&amp;quot;&amp;quot;&amp;gt; Female &lt;br&gt;&amp;#10;&amp;lt;input type=&amp;quot;radio&amp;quot; name=&amp;quot;gender&amp;quot; value=&amp;quot;other&amp;quot; id=&amp;quot;&amp;quot; class=&amp;quot;&amp;quot;&amp;gt; Other &lt;br&gt;&amp;#10;&amp;lt;/div&amp;gt; &lt;br&gt;
+                "> Gender <br>
+                
+                <input type="checkbox" name="Hobbies" class="check" id="Hobbies" value="
+                &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;label for=&amp;quot;hob&amp;quot;&amp;gt;Hob&amp;lt;/label&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;input type=&amp;quot;checkbox&amp;quot; name=&amp;quot;hob&amp;quot; value=&amp;quot;Sport&amp;quot; id=&amp;quot;hob&amp;quot; class=&amp;quot;hob&amp;quot; checked&amp;gt; Sport &lt;br&gt;&amp;#10;&amp;lt;input type=&amp;quot;checkbox&amp;quot; name=&amp;quot;hob&amp;quot; value=&amp;quot;Music&amp;quot; id=&amp;quot;hob&amp;quot; class=&amp;quot;hob&amp;quot; checked&amp;gt; Music &lt;br&gt;&amp;#10;&amp;lt;input type=&amp;quot;checkbox&amp;quot; name=&amp;quot;hob&amp;quot; value=&amp;quot;Cooking&amp;quot; id=&amp;quot;hob&amp;quot; class=&amp;quot;hob&amp;quot; checked&amp;gt; Cooking &lt;br&gt;&amp;#10;&amp;lt;/div&amp;gt; &lt;br&gt;
+                "> Hobbies <br>
+                
+                <input type="checkbox" name="Comment" class="check" id="Comment" value="
+                &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;label for=&amp;quot;comment&amp;quot;&amp;gt;Comment&amp;lt;/label&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;textarea name=&amp;quot;comment&amp;quot; cols=&amp;quot;60&amp;quot; rows=&amp;quot;3&amp;quot; id=&amp;quot;comment&amp;quot; class=&amp;quot;comment&amp;quot;&amp;gt;style=&amp;quot;resize: none;&amp;quot;: kh&amp;ocirc;ng cho &amp;#273;i&amp;#7873;u ch&amp;#7881;nh k&amp;iacute;ch th&amp;#432;&amp;#7899;c c&amp;#7911;a khung &amp;lt;/textarea&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/div&amp;gt; &lt;br&gt;
+                "> Comment <br>
+            
+                
+                <input type="checkbox" name="Select" class="check" id="Select" value="
+                &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;label for=&amp;quot;select&amp;quot;&amp;gt;Select&amp;lt;/label&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;Select multiple&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;option value=&amp;quot;SG&amp;quot;&amp;gt;SG&amp;lt;/option&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;option value=&amp;quot;HN&amp;quot;&amp;gt;HN&amp;lt;/option&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;option value=&amp;quot;DN&amp;quot;&amp;gt;DN&amp;lt;/option&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;option value=&amp;quot;Hue&amp;quot;&amp;gt;Hue&amp;lt;/option&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/Select&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/div&amp;gt; &lt;br&gt;
+                "> Select <br>
+                
+                <input type="checkbox" name="DataList" class="check" id="DataList" value="
+                &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;label for=&amp;quot;dataList&amp;quot;&amp;gt;DataList&amp;lt;/label&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;input type=&amp;quot;text&amp;quot; list=&amp;quot;myList&amp;quot; placeholder=&amp;quot;--Select--&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;datalist id=&amp;quot;myList&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;option value=&amp;quot;SG&amp;quot;&amp;gt;SG&amp;lt;/option&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;option value=&amp;quot;HN&amp;quot;&amp;gt;HN&amp;lt;/option&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;option value=&amp;quot;DN&amp;quot;&amp;gt;DN&amp;lt;/option&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;option value=&amp;quot;Hue&amp;quot;&amp;gt;Hue&amp;lt;/option&amp;gt;&lt;br&gt;&amp;#10;&amp;lt;/datalist&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/div&amp;gt; &lt;br&gt;
+                "> DataList  <br>
+                
+                <input type="checkbox" name="Datalist_v2" class="check" id="Datalist_v2" value="
+                &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;label for=&amp;quot;dataList2&amp;quot;&amp;gt;DataList 2&amp;lt;/label&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;Select&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;optgroup label=&amp;quot;ground 1&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;option value=&amp;quot;1&amp;quot;&amp;gt; 1 &amp;lt;/option&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;option value=&amp;quot;2&amp;quot;&amp;gt; 2 &amp;lt;/option&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;option value=&amp;quot;3&amp;quot;&amp;gt; 3 &amp;lt;/option&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/optgroup&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;optgroup label=&amp;quot;ground 2&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;option value=&amp;quot;4&amp;quot;&amp;gt; 4 &amp;lt;/option&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;option value=&amp;quot;5&amp;quot;&amp;gt; 5 &amp;lt;/option&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;option value=&amp;quot;6&amp;quot;&amp;gt; 6 &amp;lt;/option&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/optgroup&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;optgroup label=&amp;quot;ground 3&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;option value=&amp;quot;7&amp;quot;&amp;gt; 7 &amp;lt;/option&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;option value=&amp;quot;8&amp;quot;&amp;gt; 8 &amp;lt;/option&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;option value=&amp;quot;9&amp;quot;&amp;gt; 9 &amp;lt;/option&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/optgroup&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/Select&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/div&amp;gt; &lt;br&gt;
+                "> Datalist v2 <br>
+                
+                <input type="checkbox" name="Fieldset&Legend" class="check" id="Fieldset&Legend" value="
+                &amp;lt;div class=&amp;quot;form-group&amp;quot;&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;label for=&amp;quot;fieldset&amp;quot;&amp;gt;Fieldset&amp;lt;/label&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;fieldset&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;legend&amp;gt; Ti&amp;ecirc;u &amp;#273;&amp;#7873;: &amp;lt;/legend&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;p&amp;gt; N&amp;#7897;i dung&amp;lt;/p&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/fieldset&amp;gt; &lt;br&gt;&amp;#10;&amp;lt;/div&amp;gt; &lt;br&gt;
+                "> Fieldset and Legend <br>
+            
+                <input type="checkbox" name="Submit" class="check" id="Submit" value="
+                &amp;lt;div class=&amp;quot;sub-re&amp;quot;&amp;gt;&amp;#10;&lt;br&gt;&amp;lt;input type=&amp;quot;submit&amp;quot; value=&amp;quot;Submit&amp;quot; onclick=&amp;quot;sub()&amp;quot;&amp;gt;&amp;#10;&lt;br&gt;&amp;lt;input type=&amp;quot;reset&amp;quot; value=&amp;quot;Reset&amp;quot;&amp;gt;&amp;#10;&lt;br&gt;&amp;lt;/div&amp;gt;
+                "> Submit + Reset<br>
+            </div>
+        </div>     
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p0001" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p0001" style="max-height: 250px;">
+                        <div id="text"></div>
+                    </pre>
+                </div> <br>
+                Code CSS <br>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p001" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p001" style="max-height: 100px;">
+                        
+                        .form-body{ <br>&#10;border: 5px double blue; <br>&#10;background-color: white; <br>&#10;margin: 0 auto; <br>&#10;width: 600px; <br>&#10;} <br>&#10;.title-form{ <br>&#10;color: white; <br>&#10;text-align: center; <br>&#10;background-color: green; <br>&#10;padding: 10px;<br>&#10;font-size: 30px;<br>&#10;margin-bottom: 20px;<br>&#10;}<br>&#10;.form-group{<br>&#10;padding: 5px 0 10px 5px;<br>&#10;}<br>&#10;label{<br>&#10;width: 40%;<br>&#10;float: left;<br>&#10;} <br>&#10;input[type=&quot;text&quot;],[type=&quot;email&quot;],[type=&quot;tel&quot;],[type=&quot;password&quot;]{<br>&#10;width: 58%;<br>&#10;}<br>&#10;textarea{<br>&#10;width: 58%;<br>&#10;height: 100px;<br>&#10;}<br>&#10;.sub-re{<br>&#10;text-align: center;<br>&#10;}<br>&#10;input[type=submit],[type=reset]{<br>&#10;width: 100px;<br>&#10;height: 40px;<br>&#10;border-radius: 30px;<br>&#10;border: 4px double #333;<br>&#10;font-weight: bold;<br>&#10;} <br>&#10;input[type=submit]:hover,[type=reset]:hover{<br>&#10;width: 100px;<br>&#10;height: 40px;<br>&#10;border-radius: 30px;<br>&#10;border: 4px double #333;<br>&#10;font-weight: bold;<br>&#10;background-color: rgb(219, 219, 219);<br>&#10;}<br>
+                    </pre>
+                </div>
+            </label>
+            <script>
+                // test start
+                let $checks = $('.check');
+        
+                $checks.on('click', function() {
+        
+                let values = $checks
+                    .filter(':checked')
+                    .map((k, box) => box.value)
+                    .toArray()
+                    .join('<br>');
+        
+                $("#text").html(
+                    "&lt;form action=&quot;&quot; class=&quot;form-body&quot;&gt; <br><br>" +
+                    values + 
+                    "<br> &lt;/form&gt;"
+                    );
+                });
+                // end test
+            </script>
+        </div>
+        <!-- END HÀNG NGANG 1-->
+
+        <!-- START HÀNG NGANG 1-->
+        <div class="form-group">
+            <label>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p1" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p1">
+                        &lt;input type=&quot;text&quot;&#10;class=&quot;&quot;&#10;id=&quot;&quot;&#10;required &#10;placeholder=&quot;Nh&#7853;p username v&agrave;o &#273;&acirc;y&quot;&#10;autofocus pattern=&quot;^[a-z]{3,10}$&quot;&gt;
+                    </pre>
+                </div> <br>
+                Username: <input type="text" class="" id="" required  placeholder="Nhập username vào đây" autofocus pattern="^[a-z]{3,10}$">
+            </label>
+        </div>
+        <!-- END HÀNG NGANG 1-->
+
+        <!-- START HÀNG NGANG 2-->
+        <div class="form-group">
+            <label>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p2" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p2">
+                        &lt;input type=&quot;password&quot; id=&quot;&quot; class=&quot;&quot;&gt;
+                    </pre>
+                </div>
+                Password: <input type="password" id="" class="">
+            </label>
+        </div>
+        <!-- END HÀNG NGANG 2-->
+
+        <!-- START HÀNG NGANG 3-->
+        <div class="form-group">
+            <label>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p3" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p3">
+                        &lt;input type=&quot;email&quot; id=&quot;&quot; class=&quot;&quot;&gt;
+                    </pre>
+                </div>
+                Email: <input type="email" id="" class="">
+            </label>
+        </div>
+        <!-- END HÀNG NGANG 3-->
+
+        <!-- START HÀNG NGANG 4-->
+        <div class="form-group">
+            <label>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p4" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p4">
+                        &lt;input type=&quot;search&quot; id=&quot;&quot; class=&quot;&quot;&gt;
+                    </pre>
+                </div>
+                Search: <input type="search" id="" class="">
+            </label>
+        </div>
+        <!-- END HÀNG NGANG 4-->
+
+        <!-- START HÀNG NGANG 5-->
+        <div class="form-group">
+            <label>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p5" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p5">
+                        &lt;input type=&quot;url&quot; id=&quot;&quot; class=&quot;&quot;&gt;
+                    </pre>
+                </div>
+                Url: <input type="url" id="" class="">
+            </label>
+        </div>
+        <!-- END HÀNG NGANG 5-->
+
+        <!-- START HÀNG NGANG 6-->
+        <div class="form-group">
+            <label>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p6" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p6">
+                        &lt;input type=&quot;file&quot; id=&quot;&quot; class=&quot;&quot;&gt;
+                    </pre>
+                </div>
+                File: <input type="file" id="" class="">
+            </label>
+        </div>
+        <!-- END HÀNG NGANG 6-->
+        
+        <!-- START HÀNG NGANG 7-->
+        <div class="form-group">
+            <label>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p7" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p7">
+                        &lt;input type=&quot;color&quot; id=&quot;&quot; class=&quot;&quot;&gt;
+                    </pre>
+                </div>
+                Color: <input type="color" id="" class="">
+            </label>
+        </div>
+        <!-- END HÀNG NGANG 7-->
+
+        <!-- START HÀNG NGANG 8-->
+        <div class="form-group">
+            <label>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p8" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p8">
+                        &lt;input type=&quot;number&quot; min=&quot;0&quot; max=&quot;20&quot; value=&quot;4&quot; step=&quot;2&quot; id=&quot;&quot; class=&quot;&quot;&gt;
+                    </pre>
+                </div>
+                Number: <input type="number" min="0" max="20" value="4" step="2" id="" class="">
+            </label>
+        </div>
+        <!-- END HÀNG NGANG 8-->
+
+        <!-- START HÀNG NGANG 9-->
+        <div class="form-group">
+            <label>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p9" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p9">
+                        0 &lt;input type=&quot;range&quot; min=&quot;0&quot; max=&quot;10&quot; value=&quot;3&quot; id=&quot;&quot; class=&quot;&quot;&gt; 10
+                    </pre>
+                </div>
+                Range: 0 <input type="range" min="0" max="10" value="3" id="" class=""> 10
+            </label>
+        </div>
+        <!-- END HÀNG NGANG 9-->
+
+        <!-- START HÀNG NGANG 10-->
+        <div class="form-group">
+            <label>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p10" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p10">
+                        &lt;input type=&quot;date&quot; id=&quot;&quot; class=&quot;&quot;&gt;
+                    </pre>
+                </div>
+                Date: <input type="date" id="" class="">
+            </label>
+        </div>
+        <!-- END HÀNG NGANG 10-->
+
+        <!-- START HÀNG NGANG 11-->
+        <div class="form-group">
+            <label>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p11" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p11">
+                        &lt;input type=&quot;week&quot; id=&quot;&quot; class=&quot;&quot;&gt;
+                    </pre>
+                </div>
+                Week: <input type="week" id="" class="">
+            </label>
+        </div>
+        <!-- END HÀNG NGANG 11-->
+
+        <!-- START HÀNG NGANG 12-->
+        <div class="form-group">
+            <label>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p12" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p12">
+                        &lt;input type=&quot;month&quot; id=&quot;&quot; class=&quot;&quot;&gt;
+                    </pre>
+                </div>
+                Month: <input type="month" id="" class="">
+            </label>
+        </div>
+        <!-- END HÀNG NGANG 12-->
+
+        <!-- START HÀNG NGANG 13-->
+        <div class="form-group">
+            <label>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p13" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p13">
+                        &#10;&lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;Male&quot; id=&quot;&quot; class=&quot;&quot; checked &gt; Male <br>&#10;&lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;Female&quot; id=&quot;&quot; class=&quot;&quot;&gt; Female <br>&#10;&lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;other&quot; id=&quot;&quot; class=&quot;&quot;&gt; Other
+                    </pre>
+                </div>
+                Gender:
+                    <input type="radio" name="gender" value="Male" id="" class="" checked > Male
+                    <input type="radio" name="gender" value="Female" id="" class=""> Female
+                    <input type="radio" name="gender" value="other" id="" class=""> Other
+            </label>
+        </div>
+        <!-- END HÀNG NGANG 13-->
+
+        <!-- START HÀNG NGANG 14-->
+        <div class="form-group">
+            <label>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p14" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p14">
+                        &lt;input type=&quot;checkbox&quot; name=&quot;hob&quot; value=&quot;Sport&quot; id=&quot;&quot; class=&quot;&quot; checked&gt; Sport&#10;<br> &lt;input type=&quot;checkbox&quot; name=&quot;hob&quot; value=&quot;Music&quot; id=&quot;&quot; class=&quot;&quot; checked&gt; Music&#10;<br>&lt;input type=&quot;checkbox&quot; name=&quot;hob&quot; value=&quot;Cooking&quot; id=&quot;&quot; class=&quot;&quot; checked&gt; Cooking
+                    </pre>
+                </div>
+                Hobbies:
+                    <input type="checkbox" name="hob" value="Sport" id="" class="" checked> Sport
+                    <input type="checkbox" name="hob" value="Music" id="" class="" checked> Music
+                    <input type="checkbox" name="hob" value="Cooking" id="" class="" checked> Cooking
+            </label>
+        </div>
+        <!-- END HÀNG NGANG 14-->
+
+        <!-- START HÀNG NGANG 15-->
+        <div class="form-group">
+            <label>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p15" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p15">
+                        &lt;textarea name=&quot;&quot; cols=&quot;60&quot; rows=&quot;3&quot; id=&quot;&quot; class=&quot;&quot;&gt;style=&quot;resize: none;&quot;: kh&ocirc;ng cho &#273;i&#7873;u ch&#7881;nh k&iacute;ch th&#432;&#7899;c c&#7911;a khung&#10;&lt;/textarea&gt;
+                    </pre>
+                </div>
+                Comment:
+                    <textarea name="" cols="40" rows="3" id="" class="">style="resize: none;": không cho điều chỉnh kích thước của khung </textarea> <br>
+            </label>
+        </div>
+        <!-- END HÀNG NGANG 15-->
+
+        <!-- START HÀNG NGANG 16-->
+        <div class="form-group">
+            <label>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p16" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p16">
+                        &lt;Select multiple&gt;&#10;<br>&lt;option value=&quot;SG&quot;&gt;SG&lt;/option&gt;&#10;<br>&lt;option value=&quot;HN&quot;&gt;HN&lt;/option&gt;&#10;<br>&lt;option value=&quot;DN&quot;&gt;DN&lt;/option&gt;&#10;<br>&lt;option value=&quot;Hue&quot;&gt;Hue&lt;/option&gt;&#10;<br>&lt;/Select&gt;
+                    </pre>
+                </div>
+                Select:
+                    <Select multiple>
+                    <option value="SG">SG</option>
+                    <option value="HN">HN</option>
+                    <option value="DN">DN</option>
+                    <option value="Hue">Hue</option>
+                    </Select>
+            </label>
+        </div>
+        <!-- END HÀNG NGANG 16-->
+
+        <!-- START HÀNG NGANG 17-->
+        <div class="form-group">
+            <label>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p17" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p17">
+                        &lt;input type=&quot;text&quot; list=&quot;myList&quot; placeholder=&quot;--Select--&quot;&gt;&#10;        <br>         &lt;datalist id=&quot;myList&quot;&gt;&#10;           <br>          &lt;option value=&quot;SG&quot;&gt;SG&lt;/option&gt;&#10;        <br>             &lt;option value=&quot;HN&quot;&gt;HN&lt;/option&gt;&#10;           <br>          &lt;option value=&quot;DN&quot;&gt;DN&lt;/option&gt; &#10;         <br>            &lt;option value=&quot;Hue&quot;&gt;Hue&lt;/option&gt;&#10;        <br>         &lt;/datalist&gt;
+                    </pre>
+                </div>
+                DataList:
+                    <input type="text" list="myList" placeholder="--Select--">
+                    <datalist id="myList">
+                    <option value="SG">SG</option>
+                    <option value="HN">HN</option>
+                    <option value="DN">DN</option>
+                    <option value="Hue">Hue</option>
+                    </datalist>
+            </label>
+        </div>
+        <!-- END HÀNG NGANG 17-->
+
+        <!-- START HÀNG NGANG 18-->
+        <div class="form-group">
+            <label>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p18" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p18">
+                        &lt;Select &gt;&#10;            <br>                    &lt;optgroup label=&quot;Mi&#7873;n B&#7855;c&quot;&gt;&#10;                 <br>                   &lt;option value=&quot;1&quot;&gt;&#10;                                        H&agrave; N&#7897;i - H&#7841; Long - Sapa&#10;                                    &lt;/option&gt;&#10;                     <br>               &lt;option value=&quot;2&quot;&gt;&#10;                                        H&agrave; N&#7897;i - Ch&ugrave;a H&#432;&#417;ng - Ninh B&igrave;nh&#10;                                    &lt;/option&gt;&#10;                 <br>                   &lt;option value=&quot;3&quot;&gt;&#10;                                        H&agrave; N&#7897;i - C&aacute;t B&agrave; - Tu&#7847;n Ch&acirc;u&#10;                                    &lt;/option&gt;&#10;                <br>                &lt;/optgroup&gt;&#10;                   <br>             &lt;optgroup label=&quot;Mi&#7873;n Trung&quot;&gt;&#10;                     <br>               &lt;option value=&quot;4&quot;&gt;&#10;                                        Hu&#7871; - B&#7841;c M&atilde; - &#272;&agrave; N&#7861;ng&#10;                                    &lt;/option&gt;&#10;                     <br>               &lt;option value=&quot;5&quot;&gt;&#10;                                        Nha Trang - &#272;&agrave; L&#7841;t&#10;                                    &lt;/option&gt;&#10;                      <br>              &lt;option value=&quot;6&quot;&gt;&#10;                                        Bu&ocirc;n m&ecirc; Thu&#7853;t - Gia Lai - kontum&#10;                                    &lt;/option&gt;&#10;                    <br>            &lt;/optgroup&gt;&#10;                    <br>            &lt;optgroup label=&quot;Mi&#7873;n Nam&quot;&gt;&#10;                    <br>                &lt;option value=&quot;7&quot;&gt;&#10;                                        TP.HCM - C&#7847;n Th&#417; - C&agrave; Mau&#10;                                    &lt;/option&gt;&#10;                 <br>                   &lt;option value=&quot;8&quot;&gt;&#10;                                        TP.HCM - M&#7929; Tho&#10;                                    &lt;/option&gt;&#10;                       <br>         &lt;/optgroup&gt;&#10;                <br>            &lt;/Select&gt;
+                    </pre>
+                </div>
+                Datalist v2: tour du lịch:
+                    <Select >
+                    <optgroup label="Miền Bắc">
+                    <option value="1"> Hà Nội - Hạ Long - Sapa </option>
+                    <option value="2"> Hà Nội - Chùa Hương - Ninh Bình </option>
+                    <option value="3"> Hà Nội - Cát Bà - Tuần Châu </option>
+                    </optgroup>
+                    <optgroup label="Miền Trung">
+                    <option value="4"> Huế - Bạc Mã - Đà Nẵng </option>
+                    <option value="5"> Nha Trang - Đà Lạt </option>
+                    <option value="6"> Buôn mê Thuật - Gia Lai - kontum </option>
+                    </optgroup>
+                    <optgroup label="Miền Nam">
+                    <option value="7"> TP.HCM - Cần Thơ - Cà Mau </option>
+                    <option value="8"> TP.HCM - Mỹ Tho
+                    </option>
+                    </optgroup>
+                    </Select>
+            </label>
+        </div>
+        <!-- END HÀNG NGANG 18-->
+
+        <!-- START HÀNG NGANG 19-->
+        <div class="form-group">
+            <label>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p19" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p19">
+                        &lt;fieldset&gt;&#10;                        <br>        &lt;legend&gt;&#10;                                    S&#7889; l&#432;&#7907;ng h&agrave;nh kh&aacute;ch:&#10;                                &lt;/legend&gt;&#10;               <br>                 &lt;p&gt;&#10;                                    Ng&#432;&#7901;i l&#7899;n&#10;                                    &lt;input type=&quot;text&quot; size=&quot;10&quot; placeholder=&quot;vd: 10&quot;&gt;&#10;                        <br>            Tr&#7867; em&#10;                                    &lt;input type=&quot;text&quot; size=&quot;10&quot; placeholder=&quot;vd: 5&quot;&gt;&#10;                                &lt;/p&gt;&#10;                <br>            &lt;/fieldset&gt;
+                    </pre>
+                </div>
+                fieldset and legend: <br> <fieldset> <legend> Số lượng hành khách: </legend> <p> Người lớn <input type="text" size="10" placeholder="vd: 10"> Trẻ em <input type="text" size="10" placeholder="vd: 5"> </p> </fieldset>
+            </label>
+        </div>
+        <!-- END HÀNG NGANG 19-->
+
+        <!-- START HÀNG NGANG 20-->
+        <div class="form-group">
+            <label>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p20" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p20">
+                        &lt;form action=&quot;welcome.html&quot; oninput=&quot;total.value=parseInt(product.value)*parseInt(qty.value)&quot;&gt;&#10;&lt;br&gt;<br>Example Output: &lt;br&gt;<br> &#10;Choose product:  &lt;select name=&quot;product&quot; id=&quot;&quot;&gt; &lt;br&gt;<br> &lt;option value=&quot;100&quot;&gt;Silver&lt;/option&gt;&lt;br&gt;<br>&lt;option value=&quot;200&quot;&gt;Gold&lt;/option&gt;&lt;br&gt;<br>&lt;option value=&quot;300&quot;&gt;Diamond&lt;/option&gt;&lt;br&gt;<br>&lt;/select&gt; &lt;br&gt;<br> Chooose quantity:  &lt;input type=&quot;number&quot; min=&quot;0&quot; max=&quot;10&quot; name=&quot;qty&quot;&gt; &lt;br&gt;<br> Total: $. &lt;output name=&quot;total&quot;&gt;&lt;/output&gt;&lt;br&gt;<br>&lt;/form&gt;
+                    </pre>
+                </div>
+                <form action="welcome.html" oninput="total.value=parseInt(product.value)*parseInt(qty.value)"> <br>
+                    Example Output: <br>
+                    Choose product: <select name="product" id=""> <br>
+                    <option value="100">Silver</option><br>
+                    <option value="200">Gold</option><br>
+                    <option value="300">Diamond</option><br>
+                    </select> <br>
+                    Chooose quantity: <input type="number" min="0" max="10" name="qty"> <br>
+                    Total: $. <output name="total"></output><br>
+                </form>
+            </label>
+        </div>
+        <!-- END HÀNG NGANG 20-->
+
+        <!-- START HÀNG NGANG 21-->
+        <div class="form-group">
+            <label>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p21" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p21">
+                        &lt;input type=&quot;tel&quot; id=&quot;phone&quot; name=&quot;phone&quot; placeholder=&quot;0908 999 888        &gt;&gt; 10 numbers and no space&quot; pattern=&quot;(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})&quot; required&gt;
+                    </pre>
+                </div>
+                Enter your phone number:
+                <input type="tel" id="phone" name="phone" placeholder="0908 999 888        >> 10 numbers and no space" pattern="(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})"required style="width: 300px;">
+            </label>
+        </div>
+        <!-- END HÀNG NGANG 21-->
+
+        <!-- START HÀNG NGANG 22-->
+        <div class="form-group">
+            <label>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p22" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p22">
+                        &lt;input type=&quot;reset&quot; value=&quot;Reset&quot;&gt; <br> &lt;input type=&quot;submit&quot; value=&quot;Submit&quot; onclick=&quot;sub()&quot;&gt;
+                    </pre>
+                </div>
+                <input type="reset" value="Reset">
+                <input type="submit" value="Submit" onclick="sub()">
+            </label>
+        </div>
+        <!-- END HÀNG NGANG 22-->
+
+        <!-- START HÀNG NGANG -->
+        <!-- <div class="form-group">
+            <label>
+                <div class="codeHeader">
+                    <a class="copy-text" data-clipboard-target="#p" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                    <pre class="code" id="p">
+                        copy
+                    </pre>
+                </div>
+                copy
+            </label>
+        </div> -->
+        <!-- END HÀNG NGANG -->
+
+    </div><!-- END BOX LEFt-->
+
+    <div> <!-- START BOX RIGHT-->
+        <!-- start -->
+        <div class="box-right-box">
+            <h3>Kiểm tra tính đúng đắn của giá trị nhập vào bằng CSS</h3>
+            <div class="codeHeader">
+                <a class="copy-text" data-clipboard-target="#p23" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                <pre class="code" id="p23">
+                    input:required{ <br>
+                        border: solid white; <br>
+                        outline: none; <br>
+                    } <br>
+                    input:valid{  /* điều kiện đúng */ <br>
+                        color: green; <br>
+                    } <br>
+                    input:invalid{ /* điều kiện sai*/ <br>
+                        color: red; <br>
+                    } 
+                </pre>
+            </div>
+            Trước khi thêm các thuộc tính CSS ở trên, ta thêm 2 thuộc tính ở trong thẻ input là <b>required</b> và <b>pattern="điều kiện đúng bằng Regex"</b>
+            <div class="codeHeader">
+                <a class="copy-text" data-clipboard-target="#p23-1" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                <pre class="code" id="p23-1">
+                    required pattern="điều kiện đúng bằng Regex"
+                </pre>
+            </div>
+        </div>
+        <!-- end -->
+        <br>
+        <!-- start -->
+        <div class="box-right-box">
+            <h3>Thêm sự kiện cho nút Submit khi nhấn vào</h3>
+            <div class="codeHeader">
+                <a class="copy-text" data-clipboard-target="#p24-1" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                <pre class="code" id="p24-1">
+                    onclick="showInfo()"
+                </pre>
+            </div>
+            Thêm event onlick ở trên vào trong thẻ input Submit</b>
+            <div class="codeHeader">
+                <a class="copy-text" data-clipboard-target="#p24-2" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                <pre class="code" id="p24-2">
+                    onsubmit="return showInfo()"
+                </pre>
+            </div>
+            Thêm dòng trên vào trong thẻ form để khi submit sai thì không chuyển trang
+            <div class="codeHeader">
+                <a class="copy-text" data-clipboard-target="#p24-3" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                <pre class="code" id="p24-3">
+                    event.preventDefault();
+                </pre>
+            </div>
+            Hoặc có thể thêm dòng trên vào ngay sau khi gọi hàm <br> <br> function(){ <br>
+                event.preventDefault(); <br>
+                ... nội dung .... <br>
+            } <br>
+        </div>
+        <!-- end -->
+        <br>
+        <!-- start -->
+        <div class="box-right-box"> 
+            <h3>Lấy giá trị trong form bằng JavaScript thuần</h3>
+            <span class="chuy">Chú ý: Tên id hoặc class để lấy value cho đúng</span>
+            <div class="codeHeader">
+                <a class="copy-text" data-clipboard-target="#p25" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                <pre class="code" id="p25">
+                    <!-- start -->
+                    function showInfo(){ <br>
+                        //lấy giá trị trong thẻ input có id='name' <br>
+                        var uname = document.getElementById("name").value; <br>
+                
+                        // Lấy giá trị trong thẻ input có class='password' <br>
+                        var pass = document.getElementsByClassName("password")[0].value; <br>
+                
+                        // Lấy giá trị repassword co class='password' <br>
+                        var repass = document.getElementsByClassName("password")[1].value; <br>
+                
+                        // Lấy giá trị cho email có id="email" <br>
+                        var uemail = document.getElementById("email").value; <br>
+                
+                        // Lấy giá trị cho birthday có id='Birthday'<br>
+                        var ubirthday = document.getElementById("birthday").value; // Biến kiểu chuỗi<br>
+                
+                        //Lấy giá trị tuổi hiện tại<br>
+                        var today = new Date(); // biến kiểu Date<br>
+                        var birth = new Date(ubirthday); // thay kiểu chuỗi thành kiểu Date <br>
+                        var uage = today.getFullYear() - birth.getFullYear();<br>
+                
+                        // Lấy giá trị giới tính<br>
+                        var gender = document.getElementsByClassName("gender"); //Kiểu array HTMLCollection<br>
+                        // Tạo 1 array rỗng<br>
+                        var genderArray = new Array();<br>
+                        // Dò tìm thuộc tính<br>
+                        for (var i in gender){<br>
+                            if (gender[i].checked){<br>
+                                genderArray.push(gender[i].value);<br>
+                            }<br>
+                        }<br>
+                
+                        // Lấy giá trị Sở thích<br>
+                        var hob = document.getElementsByClassName("hob"); //chuyển kiểu
+                        // Tạo array rỗng<br>
+                        var hobArr = [];<br>
+                        // Dò tìm thuộc tính<br>
+                        for(var i in hob){<br>
+                            if (hob[i].checked){<br>
+                                hobArr.push(hob[i].value);<br>
+                            }<br>
+                        }<br>
+                
+                        // Xuất lên bảng thông báo<br>
+                        alert(  " Uname: " + uname + "\n" + <br>
+                                " Pass: " + pass + "\n" + <br>
+                                " Re-Pass: " + repass + "\n" + <br>
+                                " Email: " + uemail + "\n" +<br>
+                                " Birthday: " + ubirthday + "\n" +<br>
+                                " Số tuổi: " + uage + "\n" +<br>
+                                " Giới tính: " + genderArray + "\n" +<br>
+                                " Sở thích: " + hobArr<br>
+                                );<br>
+                        // Xu&#7845;t th&ocirc;ng tin v&agrave;o khung div&#10;  <br>      document.getElementById(&quot;info&quot;).innerHTML = <br>  &quot; &lt;h2&gt; Th&ocirc;ng tin b&#7841;n &#273;&atilde; nh&#7853;p&lt;/h2&gt;&quot; + &quot;&lt;br&gt;&quot; +&#10;  <br>                                                   &quot; Uname: &quot; + uname + &quot;&lt;br&gt;&quot; + &#10;               <br>                                      &quot; Pass: &quot; + pass + &quot;&lt;br&gt;&quot; + &#10;                <br>                                     &quot; Re-Pass: &quot; + repass + &quot;&lt;br&gt;&quot; + &#10;               <br>                                      &quot; Email: &quot; + uemail + &quot;&lt;br&gt;&quot; +&#10;                 <br>                                    &quot; Birthday: &quot; + ubirthday + &quot;&lt;br&gt;&quot; +&#10;                        <br>                             &quot; S&#7889; tu&#7893;i: &quot; + uage + &quot;&lt;br&gt;&quot; +&#10;                        <br>                             &quot; Gi&#7899;i t&iacute;nh: &quot; + genderArray + &quot;&lt;br&gt;&quot; +&#10;                    <br>                                 &quot; S&#7903; th&iacute;ch: &quot; + hobArr <br>
+                        // Không cho chuyển trang sau khi submit <br>
+                        return false;<br>
+                    }<br>
+                    <!-- end -->
+                </pre>
+            </div>
+        </div>
+        <!-- end -->
+        <br>
+        <!-- start -->
+        <div class="box-right-box">
+            <h3>Lấy giá trị trong form bằng JQuery</h3>
+            Thêm thư viện JQuery ở trước thẻ &lt;/body&gt;
+            <div class="codeHeader">
+                <a class="copy-text" data-clipboard-target="#p26" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                <pre class="code" id="p26">
+                    &lt;script src=&quot;https://code.jquery.com/jquery-3.6.0.min.js&quot;&gt;&lt;/script&gt;
+                </pre>
+            </div>
+            Code để ngay dưới thẻ trên
+            <div class="codeHeader">
+                <a class="copy-text" data-clipboard-target="#p26-1" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                <pre class="code" id="p26-1">
+        &lt;script&gt; <br>
+        function showInfo() <br>
+        { <br>
+            // không cho chuyển trang sau khi submit <br>
+            event.preventDefault(); <br> <br>
+            // lấy giá trị của id="name" <br>
+            var uname1 = document.getElementById("name").value;<br>
+            var uname = $("#name").val();<br> <br>
+
+            // lấy giá trị của class="password"<br>
+            var pass = $(".password")[0].value;<br>
+            var repass = $(".password")[1].value;<br><br>
+
+            // lấy giá trị của thẻ input type="email"<br>
+            var email = $("input[type='email']")[0].value;<br><br>
+
+            // lấy giá trị của class="gender"<br>
+            var gender = $(".gender:checked").val();<br><br>
+
+            // lấy giá trị của class="hob"<br>
+            var hob = $(".hob:checked");<br>
+                var hobbies = [];<br>
+                if(hob.length > 0){ <br>
+                    hob.each(function(){<br>
+                        hobbies.push($(this).val());<br>
+                    })<br>
+        }<br><br>
+
+
+            alert(  "\n Name: " + uname +<br>
+                    "\n Pass: " + pass +<br>
+                    "\n Re - Pass: " + repass +<br>
+                    "\n Email: " + email +<br>
+                    "\n Gender: " + gender +<br>
+                    "\n Hob: " + hobbies<br>
+                    );<br><br>
+            $("#infor").html(<br>
+                    "Name: " + uname +<br>
+                    "&lt;br&gt; Pass: " + pass +<br>
+                    "&lt;br&gt; Re - Pass: " + repass +<br>
+                    "&lt;br&gt; Email: " + email +<br>
+                    "&lt;br&gt; Gender: " + gender +<br>
+                    "&lt;br&gt; Hob: " + hobbies<br>
+                    );<br>
+        &lt;/script&gt;
+                </pre>
+            </div>
+        </div>
+        <!-- end -->
+        <br>
+        <!-- start -->
+        <div class="box-right-box"> 
+            <h3>Kiểm tra độ dài và điều kiện thông tin nhập vào</h3>
+            <span class="chuy">Code mẫu cho Username, bạn nhớ sửa lại cho đúng id và các thông tin khai báo</span><br>
+            Để trong hàm function(){ copy vào đây }
+            <div class="codeHeader">
+                <a class="copy-text" data-clipboard-target="#p27" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                <pre class="code" id="p27">
+                    <!-- start -->
+                    var name_name = document.getElementById("username"); <br>
+                    var name_value = document.getElementById("username").value;<br>
+                    var name_length = name_value.length;<br>
+                    var name_pattern = /^[a-z_][a-z0-9_\.]{4,19}$/;<br>
+                        if(name_length == ""){<br>
+                            alert("Bạn chưa nhập gì cả");<br>
+                        }<br>
+                        else if(name_length &lt; 5){<br>
+                            alert("Bạn nhập dưới 5 ký tự");<br>
+                        }<br>
+                        else if(name_length &gt; 20){<br>
+                            alert("Bạn nhập nhiều hơn 20 ký tự");<br>
+                        }<br>
+                        else if(!name_value.match(name_pattern)){<br>
+                            alert(  "Tên đăng nhập bắt đầu bằng 1 ký tự a-z hoặc _" + "\n" +<br>
+                                    "Tên đăng nhập nằm trong tập hợp kí tự a-z, 0-9 và có thể chứa dấu . hoặc _" + "\n" +<br>
+                                    "Có Tối thiểu 5 kí tự, và tối đa 20 kí tự"<br>
+                                );<br>
+                        }<br>
+                        else{<br>
+                            alert("Thông tin bạn nhập vào hợp lệ! ");<br>
+                        }<br>
+                    <!-- end -->
+                </pre>
+            </div>
+        </div>
+        <!-- end -->
+        <br>
+        <!-- start -->
+        <div class="box-right-box"> 
+            <h3>Làm menu dàn đều 2 bên trang web</h3>
+            Code HTML
+            <div class="codeHeader">
+                <a class="copy-text" data-clipboard-target="#p28-1" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                <pre class="code" id="p28-1">
+                    <!-- start -->
+                    &lt;div class=&quot;menu&quot;&gt;&#10;   <br>     &lt;ul&gt;&#10;      <br>      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Trang ch&#7911;&lt;/a&gt;&lt;/li&gt;&#10;      <br>      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Di&#7877;n &#273;&agrave;n&lt;/a&gt;&lt;/li&gt;&#10;     <br>       &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Tin t&#7913;c&lt;/a&gt;&lt;/li&gt;&#10;      <br>      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;H&#7887;i &#273;&aacute;p&lt;/a&gt;&lt;/li&gt;&#10;      <br>      &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Li&ecirc;n h&#7879;&lt;/a&gt;&lt;/li&gt;&#10;   <br>     &lt;/ul&gt;&#10;  <br>  &lt;/div&gt;
+                    <!-- end -->
+                </pre>
+            </div>
+            Code CSS
+            <div class="codeHeader">
+                <a class="copy-text" data-clipboard-target="#p28-2" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                <pre class="code" id="p28-2">
+                    <!-- start -->
+                    .menu ul { <br>
+                        background: #1F568B;<br>
+                        list-style-type: none;<br>
+                        text-align: center;<br>
+                        display: flex;<br>
+                        justify-content: space-between;<br>
+                        padding: 0;<br>
+                    }<br>
+                    .menu li {<br>
+                        color: #f1f1f1;<br>
+                        display: block;<br>
+                        width: 100%;<br>
+                        height: 50px;<br>
+                        line-height: 50px;<br>
+                    }<br>
+                    .menu a {<br>
+                        text-decoration: none;<br>
+                        color: #fff;<br>
+                        display: block;<br>
+                    }<br>
+                    .menu a:hover {<br>
+                        background: #F1F1F1;<br>
+                        color: #333;<br>
+                    }<br>
+                    <!-- end -->
+                </pre>
+            </div>
+            Kết quả: <br>
+            <!-- start menu -->
+            <div class="menu">
+                <ul>
+                <li><a href="#">Trang chủ</a></li>
+                <li><a href="#">Diễn đàn</a></li>
+                <li><a href="#">Tin tức</a></li>
+                <li><a href="#">Hỏi đáp</a></li>
+                <li><a href="#">Liên hệ</a></li>
+                </ul>
+            </div>
+            <!-- end menu -->
+        </div>
+        <!-- end -->
+        <br>
+        <!-- start -->
+        <div class="box-right-box"> 
+            <h3>Form mẫu</h3>
+            Code HTML
+            <div class="codeHeader">
+                <a class="copy-text" data-clipboard-target="#p29-1" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                <pre class="code" id="p29-1">
+                    <!-- start -->
+                    &lt;form action=&quot;&quot; class=&quot;form-body&quot;&gt;&#10;   <br>     &lt;div class=&quot;title-form&quot;&gt;&#10;      TI&Ecirc;U &#272;&#7872; FORM&#10;        &lt;/div&gt;&#10;   <br>     &lt;div class=&quot;form-group&quot;&gt;&#10;      <br>      &lt;label for=&quot;text&quot;&gt;Full name&lt;/label&gt;&#10;    <br>        &lt;input type=&quot;text&quot; id=&quot;fullname&quot; name=&quot;fullname&quot;/&gt;&#10;    <br>    &lt;/div&gt;&#10;   <br>     &lt;div class=&quot;form-group&quot;&gt;&#10;        <br>    &lt;label for=&quot;text&quot;&gt;Gender&lt;/label&gt;&#10;       <br>     &lt;input type=&quot;radio&quot; name=&quot;gender&quot; class=&quot;gender&quot; value=&quot;Male&quot; checked&gt; Male &#10;     <br>       &lt;input type=&quot;radio&quot; name=&quot;gender&quot; class=&quot;gender&quot; value=&quot;Female&quot;&gt; Female&#10;      <br>      &lt;input type=&quot;radio&quot; name=&quot;gender&quot; class=&quot;gender&quot; value=&quot;Orther&quot;&gt;Orther&#10;    <br>    &lt;/div&gt;&#10;    <br>    &lt;div class=&quot;form-group&quot;&gt;&#10;       <br>     &lt;label for=&quot;text&quot;&gt;Hobbies&lt;/label&gt; &#10;    <br>        &lt;input type=&quot;checkbox&quot; class=&quot;hob&quot; value=&quot;Shopping&quot; checked&gt; Shopping&#10;      <br>      &lt;input type=&quot;checkbox&quot; class=&quot;hob&quot; value=&quot;Eating out&quot;&gt; Eating out&#10;     <br>       &lt;input type=&quot;checkbox&quot; class=&quot;hob&quot; value=&quot;Sporting&quot;&gt; Sporting&#10;                    &#10;    <br>    &lt;/div&gt;&#10;     <br>   &lt;div class=&quot;form-group&quot;&gt;&#10;     <br>       &lt;label for=&quot;text&quot;&gt;Data of Birth&lt;/label&gt; &#10;      <br>      &lt;input type=&quot;date&quot; name=&quot;date&quot; id=&quot;date&quot;&gt;&#10;   <br>    &lt;/div&gt;&#10;    <br>   &lt;div class=&quot;form-group&quot;&gt;&#10;       <br>     &lt;label for=&quot;text&quot;&gt;Address&lt;/label&gt; &#10;       <br>     &lt;input type=&quot;text&quot; id=&quot;address&quot; name=&quot;address&quot;&gt;&#10;    <br>    &lt;/div&gt;&#10;   <br>     &lt;div class=&quot;form-group&quot;&gt;&#10;        <br>    &lt;label for=&quot;text&quot;&gt;Email&lt;/label&gt; &#10;     <br>       &lt;input type=&quot;email&quot; name=&quot;email&quot; id=&quot;email&quot;&gt;&#10;  <br>      &lt;/div&gt;&#10;     <br>   &lt;div class=&quot;form-group&quot;&gt;&#10;     <br>       &lt;label for=&quot;text&quot;&gt;Phone Number&lt;/label&gt; &#10;      <br>      &lt;input type=&quot;tel&quot; name=&quot;phone&quot; id=&quot;phone&quot;&gt;&#10;    <br>    &lt;/div&gt;&#10;   <br>     &lt;div class=&quot;form-group&quot;&gt;&#10;      <br>      &lt;label for=&quot;text&quot;&gt;City&lt;/label&gt; &#10;      <br>      &lt;input type=&quot;text&quot; list=&quot;myList&quot; placeholder=&quot;--Select--&quot;&gt;&#10;       <br>     &lt;datalist id=&quot;myList&quot;&gt;&#10;     <br>      &lt;option value=&quot;Saigon&quot;&gt;Saigon&lt;/option&gt;&#10;     <br>       &lt;option value=&quot;Hue&quot;&gt;Hue&lt;/option&gt;&#10;      <br>      &lt;option value=&quot;Hanoi&quot;&gt;Hanoi&lt;/option&gt;&#10;       <br>     &lt;option value=&quot;Danang&quot;&gt;Danang&lt;/option&gt;&#10;      <br>      &lt;/datalist&gt;&#10;    <br>    &lt;/div&gt;&#10;    <br>    &lt;div class=&quot;form-group&quot;&gt;&#10;      <br>      &lt;label for=&quot;text&quot; style=&quot;line-height: 100px;&quot;&gt;Comment&lt;/label&gt; &#10;     <br>       &lt;textarea name=&quot;&quot; id=&quot;&quot;&gt;&lt;/textarea&gt;&#10;    <br>    &lt;/div&gt;&#10;    <br>    &lt;div class=&quot;form-group&quot;&gt;&#10;       <br>     &lt;div class=&quot;sub-re&quot;&gt;&#10;          <br>      &lt;input type=&quot;submit&quot; value=&quot;Submit&quot; onclick=&quot;sub()&quot;&gt;&#10;       <br>         &lt;input type=&quot;reset&quot; value=&quot;Reset&quot;&gt;&#10;      <br>      &lt;/div&gt;&#10;    <br>    &lt;/div&gt;&#10; <br>   &lt;/form&gt;
+                    <!-- end -->
+                </pre>
+            </div>
+            Code CSS
+            <div class="codeHeader">
+                <a class="copy-text" data-clipboard-target="#p29-2" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                <pre class="code" id="p29-2">
+                    <!-- start -->
+                    .form-body{ <br>
+                        border: 5px double blue;<br>
+                        background-color: white;<br>
+                        margin: 0 auto;<br>
+                        width: 600px;<br>
+                        }<br>
+                        .title-form{<br>
+                            color: white;<br>
+                            text-align: center;<br>
+                            background-color: green;<br>
+                            padding: 10px;<br>
+                            font-size: 30px;<br>
+                            margin-bottom: 20px;<br>
+                        }<br>
+                        .form-group{<br>
+                            padding: 5px 0 10px 5px;<br>
+                        }<br>
+                        label{<br>
+                            width: 40%;<br>
+                            float: left;<br>
+                        }<br>
+                        input[type="text"],[type="email"],[type="tel"]{<br>
+                            width: 58%;<br>
+                        }<br>
+                        textarea{<br>
+                            width: 58%;<br>
+                            height: 100px;<br>
+                        }<br>
+                        .sub-re{<br>
+                            text-align: center;<br>
+                        }<br>
+                        input[type=submit],[type=reset]{<br>
+                            width: 100px;<br>
+                            height: 40px;<br>
+                            border-radius: 30px;<br>
+                            border: 4px double #333;<br>
+                            font-weight: bold;<br>
+                        }<br>
+                        input[type=submit]:hover,[type=reset]:hover{<br>
+                            width: 100px;<br>
+                            height: 40px;<br>
+                            border-radius: 30px;<br>
+                            border: 4px double #333;<br>
+                            font-weight: bold;<br>
+                            background-color: rgb(219, 219, 219);<br>
+                        }<br>
+                    <!-- end -->
+                </pre>
+            </div>
+            <div style="text-align: center;">
+                Kết quả: <br>
+            <img src="https://i.ibb.co/gMn09PF/form-h.png" alt="form-h" width="400px"></a>
+            </div>
+        </div>
+        <!-- end -->
+        <br>
+        <!-- start -->
+        <!-- <div class="box-right-box"> 
+            <h3>Tiêu đề</h3>
+            <span class="chuy">Chú ý: </span><br>
+            Nội dung thêm
+            <div class="codeHeader">
+                <a class="copy-text" data-clipboard-target="#p" href="javascript:void(0);"><i class="fa fa-files-o"></i> Copy</a>
+                <pre class="code" id="p">
+
+                </pre>
+            </div>
+        </div> -->
+        <!-- end -->
+
+
+
+    </div> <!-- END BOX RIGHT-->
+
+</div><!-- END BOX-->
+
+
+</body>
+</html>
